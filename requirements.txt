@@ -1,0 +1,8 @@
+dagster
+dagster-postgres
+fastapi
+uvicorn
+psycopg2-binary
+dagit
+pandas
+requests

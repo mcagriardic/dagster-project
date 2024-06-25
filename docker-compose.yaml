@@ -1,0 +1,68 @@
+services:
+  dagster:
+    container_name: dagster
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/workspace
+    environment:
+      DAGSTER_HOME: /workspace/dagster_conf
+      DAGSTER_PG_USERNAME: user
+      DAGSTER_PG_PASSWORD: password
+      DAGSTER_PG_HOST: dagster-postgres
+      DAGSTER_PG_DB: dagsterdb
+    depends_on:
+      - dagster-postgres
+      - postgres
+      - fastapi
+      # - mongodb
+      # - redis
+    command:
+      # - sleep
+      # - infinity
+      - "dagster"
+      - "dev"
+      - "-w"
+      - "dagster_conf/workspace.yaml"
+      - "-h"
+      - "0.0.0.0"
+      - "-p"
+      - "3000"
+
+  fastapi:
+    container_name: fastapi
+    build: ./fastapi
+    volumes:
+      - ./fastapi:/workspace
+    command:
+      - "fastapi"
+      - "run"
+      - "app/main.py"
+      - "--host"
+      - "0.0.0.0"
+
+
+  postgres:
+    container_name: postgres
+    build: ./postgres
+    ports:
+      - "5432:5432"
+
+  dagster-postgres:
+    container_name: dagster-postgres
+    image: postgres:13
+    environment:
+      POSTGRES_DB: dagsterdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  # mongodb:
+  #   image: mongo:4.4
+
+  # redis:
+  #   image: redis:6
+
+# networks:
+#   default:
+#     name: default_app_network
