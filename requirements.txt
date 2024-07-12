@@ -6,3 +6,6 @@ psycopg2-binary
 dagit
 pandas
 requests
+pandera
+dagster-pandera
+numpy<2
