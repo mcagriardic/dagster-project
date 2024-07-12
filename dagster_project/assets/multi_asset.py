@@ -10,14 +10,14 @@ from pandera.typing import Series
 from dagster_project.resources.social_media_api import SocialMediaApi
 
 
-class Posts(pa.SchemaModel):
+class Posts(pa.DataFrameModel):
     userId: Series[int] = pa.Field(gt=0)
     id: Series[int] = pa.Field(gt=0)
     body: Series[str] = pa.Field()
     title: Series[str] = pa.Field()
 
 
-class Photos(pa.SchemaModel):
+class Photos(pa.DataFrameModel):
     albumId: Series[int] = pa.Field(gt=0)
     id: Series[int] = pa.Field(gt=0)
     title: Series[str] = pa.Field()
