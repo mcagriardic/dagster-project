@@ -9,7 +9,7 @@ from requests import Response
 logger = get_dagster_logger()
 
 
-class MoviesApi(ConfigurableResource):
+class SocialMediaApi(ConfigurableResource):
     api_base_url: str = "http://fastapi:8000"
 
     def _get_response_content(self, response: Response) -> list[dict[str, Any]]:
