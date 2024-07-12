@@ -1,0 +1,6 @@
+*pyc
+logs
+storage
+.*
+
+__pycache__
