@@ -10,7 +10,7 @@ from dagster_project.resources.social_media_api import SocialMediaApi
 from dagster_project.utils import head_md
 
 
-class SocialMedia(pa.SchemaModel):
+class SocialMedia(pa.DataFrameModel):
     userId: Series[int] = pa.Field(gt=0)
     albumId: Series[int] = pa.Field(gt=0)
     postId: Series[int] = pa.Field(gt=0)

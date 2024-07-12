@@ -9,7 +9,7 @@ from dagster_project.resources.movies_api import MoviesApi
 logger = get_dagster_logger()
 
 
-class Movies(pa.SchemaModel):
+class Movies(pa.DataFrameModel):
     id: Series[int] = pa.Field(gt=0)
     title: Series[str] = pa.Field()
     vote_average: Series[float] = pa.Field(ge=0)
