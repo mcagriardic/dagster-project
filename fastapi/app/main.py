@@ -1,15 +1,26 @@
-from typing import Union
+from app.database.movies import Movies
+from app.external import social_media
 
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get("/get_all")
+def get_all():
+    return Movies.get_all()
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/posts")
+def get_posts():
+    return social_media.get_posts()
+
+
+@app.get("/photos")
+def get_photos():
+    return social_media.get_photos()
+
+
+@app.get("/comments")
+def get_comments():
+    return social_media.get_comments()
