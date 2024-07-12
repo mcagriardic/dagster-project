@@ -35,12 +35,16 @@ services:
     build: ./fastapi
     volumes:
       - ./fastapi:/workspace
+    ports:
+      - "8000:8000"
     command:
-      - "fastapi"
-      - "run"
-      - "app/main.py"
+      - "uvicorn"
+      - "app.main:app"
       - "--host"
       - "0.0.0.0"
+      - "--port"
+      - "8000"
+      - "--reload"
 
 
   postgres:
